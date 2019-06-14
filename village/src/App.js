@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Route, NavLink } from "react-router-dom";
-import "./App.scss";
+import "./App.css";
 import SmurfForm from "./components/SmurfForm";
 import Smurfs from "./components/Smurfs";
+import SmurfCard from "./components/SmurfCard";
 
 class App extends Component {
 	constructor(props) {
@@ -38,14 +39,50 @@ class App extends Component {
 			});
 	};
 
+	deleteSmurf = (e, id) => {
+		// this.setState(prevState => ({
+		// 	smurfs: prevState.smurfs.filter(smurf => smurf.id !== id)
+		// }));
+		e.preventDefault();
+		axios
+			.delete(`http://localhost:3333/smurfs/${id}`)
+			.then(res => {
+				this.setState({ smurfs: res.data });
+			})
+			.catch(err => {
+				console.log(err);
+				this.setState({ error: err.message });
+			});
+	};
+
+	updateSmurf = (e, id, updatedSmurf) => {
+		// this.setState(prevState => ({
+		// 	smurfs: prevState.smurfs.filter(smurf => smurf.id !== id)
+		// }));
+		e.preventDefault();
+		axios
+			.put(`http://localhost:3333/smurfs/${id}`, updatedSmurf)
+			.then(res => {
+				this.setState({ smurfs: res.data });
+			})
+			.catch(err => {
+				console.log(err);
+				this.setState({ error: err.message });
+			});
+	};
+
 	// Notice what your map function is looping over and returning inside of Smurfs.
 	// You'll need to make sure you have the right properties on state and pass them down to props.
 	render() {
 		return (
 			<div className="App">
-				<div className="NavBar">
-					<NavLink to="/">Smurf List</NavLink>
-					<NavLink to="/smurf-form">Add Smurf</NavLink>
+				<div className="navBar">
+					<NavLink exact to="/" className="navLink">
+						Smurf List
+					</NavLink>
+					<NavLink exact to="/smurf-form" className="navLink">
+						Add Smurf
+					</NavLink>
 				</div>
 				<Route
 					path="/smurf-form"
@@ -54,7 +91,26 @@ class App extends Component {
 				<Route
 					exact
 					path="/"
-					render={props => <Smurfs {...props} smurfs={this.state.smurfs} />}
+					render={props => (
+						<Smurfs
+							{...props}
+							smurfs={this.state.smurfs}
+							deleteSmurf={this.deleteSmurf}
+							updateSmurf={this.updateSmurf}
+						/>
+					)}
+				/>
+				<Route
+					exact
+					path="/smurf/:id"
+					render={props => (
+						<SmurfCard
+							{...props}
+							smurfs={this.state.smurfs}
+							deleteSmurf={this.deleteSmurf}
+							updateSmurf={this.updateSmurf}
+						/>
+					)}
 				/>
 			</div>
 		);

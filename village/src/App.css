@@ -1,0 +1,97 @@
+/* Home Page */
+.App {
+	/* text-align: center; */
+}
+.navBar {
+	display: flex;
+	justify-content: space-evenly;
+}
+.navLink {
+	font-size: 2rem;
+	text-decoration: none;
+	background: whitesmoke;
+	flex-grow: 1;
+	padding: 1%;
+	border: 1px solid black;
+	color: darkblue;
+	text-align: center;
+}
+.active {
+	background: lightskyblue;
+}
+/* Smurfs List */
+.Smurfs h1 {
+	text-align: center;
+}
+.Smurfs ul {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-evenly;
+}
+/* Smurf Card */
+.Smurf {
+	display: flex;
+	flex-flow: column wrap;
+	background: lightskyblue;
+	color: darkblue;
+	padding: 0.5% 1% 1% 1%;
+	margin: 1%;
+	width: 25%;
+}
+.cardElement {
+	font-size: 1.5rem;
+	text-align: center;
+	padding: 1%;
+}
+.cardTop {
+	display: flex;
+	font-size: 1.5rem;
+	padding: 1%;
+	justify-content: space-between;
+}
+.buttonDiv {
+	display: flex;
+	margin-right: 1%;
+	width: 15%;
+}
+.deleteButton {
+	padding-left: 10%;
+}
+
+/* Smurf Individual Card */
+.smurfCard {
+	display: flex;
+	justify-content: center;
+}
+
+/* Smurf Form */
+.smurfForm {
+	display: flex;
+	flex-flow: column wrap;
+	width: 66%;
+	padding: 2% 1% 1% 1%;
+	align-content: flex-end;
+}
+.addElement {
+	padding: 1%;
+	margin: 2%;
+}
+.smurfForm button {
+	width: 50%;
+	margin: 2% auto;
+	padding: 1%;
+}
+
+/* Smurf Update Form */
+.updateForm {
+	display: flex;
+}
+.updateForm button {
+	width: 70%;
+	height: 50%;
+}
+.updateForm .inputElement {
+	font-size: 1.2rem;
+	text-align: center;
+	padding: 1%;
+}

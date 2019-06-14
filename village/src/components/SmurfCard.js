@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Smurf from "./Smurf";
 
-class Smurfs extends Component {
+class SmurfCard extends Component {
 	render() {
 		return (
-			<div className="Smurfs">
-				<h1>Smurf Village</h1>
-				<ul>
-					{this.props.smurfs.map(smurf => {
+			<div className="smurfCard">
+				{this.props.smurfs
+					.filter(
+						smurf => smurf.id === parseInt(this.props.match.params.id, 10)
+					)
+					.map(smurf => {
 						return (
 							<Smurf
 								{...smurf}
@@ -17,14 +19,13 @@ class Smurfs extends Component {
 							/>
 						);
 					})}
-				</ul>
 			</div>
 		);
 	}
 }
 
-Smurf.defaultProps = {
+SmurfCard.defaultProps = {
 	smurfs: []
 };
 
-export default Smurfs;
+export default SmurfCard;
